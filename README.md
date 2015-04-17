@@ -4,18 +4,18 @@ MBED-LPC1768
 [![Build Status](https://img.shields.io/travis/macmade/MBED-LPC1768.svg?branch=master&style=flat)](https://travis-ci.org/macmade/MBED-LPC1768)
 [![Issues](http://img.shields.io/github/issues/macmade/MBED-LPC1768.svg?style=flat)](https://github.com/macmade/MBED-LPC1768/issues)
 ![Status](https://img.shields.io/badge/status-active-brightgreen.svg?style=flat)
-![License](https://img.shields.io/badge/license-bsd-brightgreen.svg?style=flat)
+![License](https://img.shields.io/badge/license-mit-brightgreen.svg?style=flat)
 [![Contact](https://img.shields.io/badge/contact-@macmade-blue.svg?style=flat)](https://twitter.com/macmade)
 
 About
 -----
 
-Various experiments with the MBED-LPC1768 ARM microcontroller.
+Various experiments with the [MBED-LPC1768](http://developer.mbed.org) ARM microcontroller.
 
 License
 -------
 
-MEMDebug is released under the terms of the BSD license.
+All source code is released under the terms of the MIT license.
 
 Repository Infos
 ----------------
