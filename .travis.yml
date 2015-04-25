@@ -1,0 +1,10 @@
+language: objective-c
+compiler: clang
+script: make
+before_install:
+  - git submodule update --init --recursive
+install:
+  - wget https://s3.amazonaws.com/xs-labs/mbed/gcc-arm-none-eabi-4_9-2015q1-20150306-mac.tar.bz2
+  - tar -xjf gcc-arm-none-eabi-4_9-2015q1-20150306-mac.tar.bz2
+  - sudo mv gcc-arm-none-eabi-4_9-2015q1 /usr/local/mbed
+  - rm gcc-arm-none-eabi-4_9-2015q1-20150306-mac.tar.bz2
