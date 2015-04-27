@@ -170,9 +170,15 @@ MBED_FUNC_CPP_FILES    = $(foreach _F,$(wildcard $(1)*$(EXT_CPP)),$(_F))
 MBED_FUNC_SOURCE_FILES = $(call MBED_FUNC_S_FILES,$(1)) $(call MBED_FUNC_C_FILES,$(1)) $(call MBED_FUNC_CPP_FILES,$(1))
 MBED_FUNC_O_FILES      = $(foreach _F,$(FILES),$(patsubst %,$(DIR_BUILD_OBJ)%$(EXT_O),$(subst /,.,$(patsubst $(DIR_SRC)%,%,$(_F)))))
 
+PRINT      = @echo -e "[ "$(COLOR_PURPLE)$(MAKELEVEL)$(COLOR_NONE) "]> "$(foreach _P,$(BRANCH) $(PROMPT) $(PROJECT),"[ "$(COLOR_GREEN)$(_P)$(COLOR_NONE)" ]>")" *** "$(1)
+PRINT_FILE = $(call PRINT,$(1)): $(2)
+
 ################################################################################
 # Targets
 ################################################################################
+
+# Default shell
+SHELL := /bin/bash
 
 # Clear any existing search path
 VPATH =
@@ -208,41 +214,50 @@ all: $(DIR_BUILD_BIN)$(PROJECT)$(EXT_BIN) $(DIR_BUILD_BIN)$(PROJECT)$(EXT_HEX) $
 	
 clean:
 	
+	$(call PRINT,Cleaning all build files)
 	@rm -rf $(DIR_BUILD_BIN)*
 	@rm -rf $(DIR_BUILD_OBJ)*
 
 install:
 	
+	$(call PRINT,Installing project on controller)
 	@:
 
 $(DIR_BUILD_BIN)%$(EXT_BIN): $(DIR_BUILD_BIN)$(PROJECT)$(EXT_ELF)
 	
-	$(OBJCOPY) -O binary $< $@
+	$(call PRINT_FILE,$(COLOR_CYAN)Generating binary file$(COLOR_NONE),$(COLOR_GRAY)$(notdir $@)$(COLOR_NONE))
+	@$(OBJCOPY) -O binary $< $@
 
 $(DIR_BUILD_BIN)%$(EXT_HEX): $(DIR_BUILD_BIN)$(PROJECT)$(EXT_ELF)
 	
-	$(OBJCOPY) -O ihex $< $@
+	$(call PRINT_FILE,$(COLOR_CYAN)Generating Intel hex file$(COLOR_NONE),$(COLOR_GRAY)$(notdir $@)$(COLOR_NONE))
+	@$(OBJCOPY) -O ihex $< $@
 
 $(DIR_BUILD_BIN)%$(EXT_LST): $(DIR_BUILD_BIN)$(PROJECT)$(EXT_ELF)
 	
-	$(OBJDUMP) -Sdh $< > $@
+	$(call PRINT_FILE,$(COLOR_CYAN)Generating object dump$(COLOR_NONE),$(COLOR_GRAY)$(notdir $@)$(COLOR_NONE))
+	@$(OBJDUMP) -Sdh $< > $@
 
 $(DIR_BUILD_BIN)%$(EXT_ELF): _FILES = $(call MBED_FUNC_O_FILES)
 $(DIR_BUILD_BIN)%$(EXT_ELF): $$(_FILES) $(SYS_OBJ)
 	
-	$(LD) $(FLAGS_LD) -T$(LD_SCRIPT) -o $@ $^ $(LIBS)
+	$(call PRINT_FILE,$(COLOR_CYAN)Linking ELF executable$(COLOR_NONE),$(COLOR_GRAY)$(notdir $@)$(COLOR_NONE))
+	@$(LD) $(FLAGS_LD) -T$(LD_SCRIPT) -o $@ $^ $(LIBS)
 	
 $(DIR_BUILD_OBJ)%$(EXT_S)$(EXT_O): _FILE = $(patsubst %,$(DIR_SRC)%$(EXT_S),$(subst .,/,$*))
 $(DIR_BUILD_OBJ)%$(EXT_S)$(EXT_O): $$(_FILE)
 	
-	$(AS) $(FLAGS_AS) -o $@ $<
+	$(call PRINT_FILE,Compiling ASM file,$(COLOR_YELLOW)$(_FILE)$(COLOR_NONE) "->" $(COLOR_GRAY)$(notdir $@)$(COLOR_NONE))
+	@$(AS) $(FLAGS_AS) -o $@ $<
 	
 $(DIR_BUILD_OBJ)%$(EXT_C)$(EXT_O): _FILE = $(patsubst %,$(DIR_SRC)%$(EXT_C),$(subst .,/,$*))
 $(DIR_BUILD_OBJ)%$(EXT_C)$(EXT_O): $$(_FILE)
 	
-	$(CC) $(FLAGS_CC_C) $(FLAGS_CC) $(FLAGS_CC_MACROS) -o $@ -c $<
+	$(call PRINT_FILE,Compiling C file,$(COLOR_YELLOW)$(_FILE)$(COLOR_NONE) "->" $(COLOR_GRAY)$(notdir $@)$(COLOR_NONE))
+	@$(CC) $(FLAGS_CC_C) $(FLAGS_CC) $(FLAGS_CC_MACROS) -o $@ -c $<
 	
 $(DIR_BUILD_OBJ)%$(EXT_CPP)$(EXT_O): _FILE = $(patsubst %,$(DIR_SRC)%$(EXT_CPP),$(subst .,/,$*))
 $(DIR_BUILD_OBJ)%$(EXT_CPP)$(EXT_O): $$(_FILE)
 	
-	$(CPP) $(FLAGS_CC_CPP) $(FLAGS_CC) $(FLAGS_CC_MACROS) -o $@ -c $<
+	$(call PRINT_FILE,Compiling C++ file,$(COLOR_YELLOW)$(_FILE)$(COLOR_NONE) "->" $(COLOR_GRAY)$(notdir $@)$(COLOR_NONE))
+	@$(CPP) $(FLAGS_CC_CPP) $(FLAGS_CC) $(FLAGS_CC_MACROS) -o $@ -c $<
