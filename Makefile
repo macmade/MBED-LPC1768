@@ -22,14 +22,11 @@
 # THE SOFTWARE.
 ################################################################################
 
-all:
-	
-	@:
-	
-clean:
-	
-	@:
+# Project name
+PROJECT := MBED-LPC1768
 
-install:
-	
-	@:
+# MBED makefile
+include MBED.mk
+
+# Project files
+FILES := $(call MBED_FUNC_SOURCE_FILES,$(DIR_SRC))
