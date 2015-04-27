@@ -214,7 +214,7 @@ all: $(DIR_BUILD_BIN)$(PROJECT)$(EXT_BIN) $(DIR_BUILD_BIN)$(PROJECT)$(EXT_HEX) $
 	
 clean:
 	
-	$(call PRINT,Cleaning all build files)
+	@$(call PRINT,Cleaning all build files)
 	@rm -rf $(DIR_BUILD_BIN)*
 	@rm -rf $(DIR_BUILD_OBJ)*
 
