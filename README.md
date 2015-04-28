@@ -12,6 +12,11 @@ About
 
 Various experiments with the [MBED-LPC1768](http://developer.mbed.org) ARM microcontroller.
 
+### Toolchain
+
+This project requires the [GNU Tools for ARM Embedded Processors](https://launchpad.net/gcc-arm-embedded).  
+The toolchain is expected to be installed in `/usr/local/mbed/`.
+
 License
 -------
 
