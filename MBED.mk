@@ -68,7 +68,7 @@ OBJDUMP := $(TOOLCHAIN_BIN)arm-none-eabi-objdump
 SIZE    := $(TOOLCHAIN_BIN)arm-none-eabi-size
 
 # Flags
-FLAGS_INC       := $(foreach _I,$(PATH_INC),$(addprefix -I,$(_I)))
+FLAGS_INC       := -I$(DIR_INC) $(foreach _I,$(PATH_INC),$(addprefix -I,$(_I)))
 FLAGS_LIB       := $(foreach _L,$(PATH_LIB),$(addprefix -L,$(_L)))
 FLAGS_CPU       := -mcpu=cortex-m3 -mthumb
 FLAGS_WARN      := -Wall -Werror
@@ -84,8 +84,8 @@ FLAGS_CC        := $(FLAGS_CPU)         \
                    -fdata-sections      \
                    -fomit-frame-pointer \
                    $(FLAGS_INC)
-FLAGS_CC_C      := -std=c99
-FLAGS_CC_CPP    := -std=c++98 \
+FLAGS_CC_C      := -std=c11
+FLAGS_CC_CPP    := -std=c++11 \
                    -fno-rtti
 FLAGS_CC_MACROS := -DTARGET_LPC1768                     \
                    -DTARGET_M3                          \
@@ -109,13 +109,13 @@ FLAGS_LD        := $(FLAGS_CPU)                                         \
                    $(FLAGS_LIB)
 
 # Libraries
-LIBS := -lstdc++ \
+LIBS := -lmbed   \
+        -lstdc++ \
         -lsupc++ \
         -lm      \
         -lc      \
         -lgcc    \
-        -lnosys  \
-        -lmbed
+        -lnosys
 
 # Other resources
 LD_SCRIPT := ./mbed/TARGET_LPC1768/TOOLCHAIN_GCC_ARM/LPC1768.ld
