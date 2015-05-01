@@ -29,4 +29,6 @@ PROJECT := MBED-LPC1768
 include MBED.mk
 
 # Project files
-FILES := $(call MBED_FUNC_SOURCE_FILES,$(DIR_SRC))
+FILES := $(call MBED_FUNC_SOURCE_FILES,$(DIR_SRC))         \
+         $(call MBED_FUNC_SOURCE_FILES,$(DIR_SRC)XS/MBED/) \
+         $(call MBED_FUNC_SOURCE_FILES,$(DIR_SRC)XS/MBED/LPC1768/)
