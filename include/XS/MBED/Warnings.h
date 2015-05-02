@@ -25,8 +25,6 @@
 #ifndef XS_MBED_WARNINGS_H
 #define XS_MBED_WARNINGS_H
 
-#include <XS/MBED.h>
-
 #ifndef __GNUC__
 #error "XS::MBED requires GCC as a compiler"
 #endif
@@ -107,7 +105,6 @@
 #pragma GCC diagnostic error "-Wstrict-prototypes"
 #pragma GCC diagnostic error "-Wsuggest-attribute=format"
 #pragma GCC diagnostic error "-Wsuggest-attribute=noreturn"
-#pragma GCC diagnostic error "-Wsuggest-attribute=pure"
 #pragma GCC diagnostic error "-Wswitch-default"
 #pragma GCC diagnostic error "-Wswitch-enum"
 #pragma GCC diagnostic error "-Wswitch"
@@ -144,5 +141,6 @@
 #pragma GCC diagnostic error "-Waggregate-return"
 #pragma GCC diagnostic error "-Wzero-as-null-pointer-constant"
 #pragma GCC diagnostic error "-Wsuggest-attribute=const"
+#pragma GCC diagnostic error "-Wsuggest-attribute=pure"
 */
 #endif /* XS_MBED_WARNINGS_H */
