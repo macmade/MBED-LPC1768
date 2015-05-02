@@ -25,6 +25,12 @@
 #ifndef XS_MBED_H
 #define XS_MBED_H
 
+#include <XS/MBED/C++11.h>
 #include <XS/MBED/Warnings.h>
+#include <XS/MBED/DigitalIn.h>
+#include <XS/MBED/DigitalOut.h>
+#include <XS/MBED/DigitalInOut.h>
+#include <XS/MBED/Board.h>
+#include <XS/MBED/LPC1768.h>
 
 #endif /* XS_MBED_H */
