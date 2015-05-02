@@ -22,7 +22,6 @@
  * THE SOFTWARE.
 *******************************************************************************/
 
-#include <mbed.h>
 #include <XS/MBED.h>
 
 int main( void )
