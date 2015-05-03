@@ -36,38 +36,22 @@ namespace XS
         {
             public:
                 
-                IMPL( int n ): pin( n ), value( 0 ), hasValue( false )
-                {
-                    gpio_init_out( &( this->gpio ), static_cast< PinName >( n ) );
-                }
-                
-                IMPL( int n, int v ): pin( n ), value( v ), hasValue( true )
+                IMPL( int n, int v ): pin( n ), value( v )
                 {
                     gpio_init_out_ex( &( this->gpio ), static_cast< PinName >( n ), v );
                 }
                 
-                IMPL( const IMPL & o ): pin( o.pin ), value( o.value ), hasValue( o.hasValue )
+                IMPL( const IMPL & o ): pin( o.pin ), value( o.value )
                 {
-                    if( o.hasValue )
-                    {
-                        gpio_init_out_ex( &( this->gpio ), static_cast< PinName >( o.pin ), o.value );
-                    }
-                    else
-                    {
-                        gpio_init_out( &( this->gpio ), static_cast< PinName >( o.pin ) );
-                    }
+                    gpio_init_out_ex( &( this->gpio ), static_cast< PinName >( o.pin ), o.value );
                 }
                 
                 gpio_t gpio;
                 int    pin;
                 int    value;
-                bool   hasValue;
         };
         
         #pragma GCC diagnostic pop
-        
-        DigitalOut::DigitalOut( int n ): impl( new IMPL( n ) )
-        {}
         
         DigitalOut::DigitalOut( int n, int v ): impl( new IMPL( n, v ) )
         {}
@@ -100,17 +84,17 @@ namespace XS
             return *( this );
         }
         
-        DigitalOut::operator int( void )
+        DigitalOut::operator int( void ) const
         {
             return this->Read();
         }
         
-        bool DigitalOut::IsConnected( void )
+        bool DigitalOut::IsConnected( void ) const
         {
             return gpio_is_connected( &( this->impl->gpio ) );
         }
         
-        int DigitalOut::Read( void )
+        int DigitalOut::Read( void ) const
         {
             return gpio_read( &( this->impl->gpio ) );
         }

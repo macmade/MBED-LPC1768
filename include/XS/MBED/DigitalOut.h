@@ -35,8 +35,7 @@ namespace XS
         {
             public:
                 
-                DigitalOut( int n );
-                DigitalOut( int n, int v );
+                DigitalOut( int n, int v = 0 );
                 DigitalOut( const DigitalOut & o );
                 DigitalOut( DigitalOut && o );
                 
@@ -45,10 +44,10 @@ namespace XS
                 DigitalOut & operator =( DigitalOut o );
                 DigitalOut & operator =( int v );
                 
-                operator int( void );
+                operator int( void ) const;
                 
-                bool IsConnected( void );
-                int  Read( void );
+                bool IsConnected( void ) const;
+                int  Read( void ) const;
                 void Write( int v );
                 
                 friend void swap( DigitalOut & o1, DigitalOut & o2 );
