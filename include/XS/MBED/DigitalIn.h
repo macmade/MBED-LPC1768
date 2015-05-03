@@ -35,13 +35,20 @@ namespace XS
         {
             public:
                 
-                DigitalIn( int n );
+                DigitalIn( int n, PinMode m = PinModePullDown );
                 DigitalIn( const DigitalIn & o );
                 DigitalIn( DigitalIn && o );
                 
                 virtual ~DigitalIn( void );
                 
                 DigitalIn & operator =( DigitalIn o );
+                
+                operator int( void ) const;
+                
+                bool    IsConnected( void ) const;
+                int     Read( void ) const;
+                PinMode GetPinMode( void ) const;
+                void    SetPinMode( PinMode m );
                 
                 friend void swap( DigitalIn & o1, DigitalIn & o2 );
                 
