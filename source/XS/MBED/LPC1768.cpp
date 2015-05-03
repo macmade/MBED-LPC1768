@@ -34,5 +34,25 @@ namespace XS
             
             return 0;
         }
+        
+        DigitalOut LPC1768::GetLED1( void )
+        {
+            return this->GetDigitalOut( 0 );
+        }
+        
+        DigitalOut LPC1768::GetLED2( void )
+        {
+            return this->GetDigitalOut( 0 );
+        }
+        
+        DigitalOut LPC1768::GetLED3( void )
+        {
+            return this->GetDigitalOut( 0 );
+        }
+        
+        DigitalOut LPC1768::GetLED4( void )
+        {
+            return this->GetDigitalOut( 0 );
+        }
     }
 }

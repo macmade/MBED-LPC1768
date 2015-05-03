@@ -36,6 +36,11 @@ namespace XS
             public:
                 
                 int GetPinID( int pin );
+                
+                DigitalOut GetLED1( void );
+                DigitalOut GetLED2( void );
+                DigitalOut GetLED3( void );
+                DigitalOut GetLED4( void );
         };
     }
 }
