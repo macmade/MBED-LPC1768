@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		052BDE131AF6596300CEC6E3 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
 		05C2C3AC1AF52083008CF0D5 /* DigitalOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitalOut.h; sourceTree = "<group>"; };
 		05C2C3B01AF52083008CF0D5 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		05C2C3B11AF52083008CF0D5 /* Warnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warnings.h; sourceTree = "<group>"; };
@@ -155,6 +156,7 @@
 				05C2C4211AF5233F008CF0D5 /* C++11.h */,
 				05C2C3B01AF52083008CF0D5 /* Platform.h */,
 				05C2C3B11AF52083008CF0D5 /* Warnings.h */,
+				052BDE131AF6596300CEC6E3 /* Types.h */,
 				05C2C4271AF53E18008CF0D5 /* Board.h */,
 				05C2C4281AF53E18008CF0D5 /* DigitalIn.h */,
 				05C2C4291AF53E18008CF0D5 /* DigitalInOut.h */,
