@@ -38,12 +38,22 @@ namespace XS
                 
                 IMPL( int n, int v ): pin( n ), value( v )
                 {
-                    gpio_init_out_ex( &( this->gpio ), static_cast< PinName >( n ), v );
+                    gpio_init_out_ex
+                    (
+                        &( this->gpio ),
+                        static_cast< PinName >( n ),
+                        v
+                    );
                 }
                 
                 IMPL( const IMPL & o ): pin( o.pin ), value( o.value )
                 {
-                    gpio_init_out_ex( &( this->gpio ), static_cast< PinName >( o.pin ), o.value );
+                    gpio_init_out_ex
+                    (
+                        &( this->gpio ),
+                        static_cast< PinName >( o.pin ),
+                        o.value
+                    );
                 }
                 
                 gpio_t gpio;
