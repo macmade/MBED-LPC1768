@@ -28,19 +28,19 @@ namespace XS
 {
     namespace MBED
     {       
-        DigitalIn Board::GetDigitalIn( int pin )
+        DigitalIn Board::GetDigitalIn( int pin, PinMode mode )
         {
-            return DigitalIn( this->GetPinID( pin ) );
+            return DigitalIn( this->GetPinID( pin ), mode );
         }
         
-        DigitalOut Board::GetDigitalOut( int pin )
+        DigitalOut Board::GetDigitalOut( int pin, int value )
         {
-            return DigitalOut( this->GetPinID( pin ) );
+            return DigitalOut( this->GetPinID( pin ), value );
         }
         
-        DigitalInOut Board::GetDigitalInOut( int pin )
+        DigitalInOut Board::GetDigitalInOut( int pin, PinDirection direction, PinMode mode, int value )
         {
-            return DigitalInOut( this->GetPinID( pin ) );
+            return DigitalInOut( this->GetPinID( pin ), direction, mode, value );
         }
     }
 }

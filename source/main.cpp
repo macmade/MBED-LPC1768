@@ -26,5 +26,16 @@
 
 int main( void )
 {
+    XS::MBED::LPC1768    board;
+    XS::MBED::DigitalOut led1 = board.GetLED1();
+    XS::MBED::DigitalOut led2 = board.GetLED2();
+    XS::MBED::DigitalOut led3 = board.GetLED3();
+    XS::MBED::DigitalOut led4 = board.GetLED4();
+    
+    while( 1 )
+    {
+        
+    }
+    
     return 0;
 }

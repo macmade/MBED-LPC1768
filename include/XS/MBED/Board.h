@@ -35,9 +35,9 @@ namespace XS
         {
             public:
                 
-                DigitalIn    GetDigitalIn( int pin );
-                DigitalOut   GetDigitalOut( int pin );
-                DigitalInOut GetDigitalInOut( int pin );
+                DigitalIn    GetDigitalIn( int pin, PinMode mode = PinModePullDown );
+                DigitalOut   GetDigitalOut( int pin, int value = 0 );
+                DigitalInOut GetDigitalInOut( int pin, PinDirection direction, PinMode mode = PinModePullDown, int value = 0 );
                 
                 virtual int GetPinID( int pin ) = 0;
         };
