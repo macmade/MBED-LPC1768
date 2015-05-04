@@ -23,26 +23,80 @@
 *******************************************************************************/
 
 #include <XS/MBED.h>
+#include <XS/MBED/Platform.h>
 
 namespace XS
 {
     namespace MBED
     {
+        #pragma GCC diagnostic push
+        #pragma GCC diagnostic ignored "-Wpadded"
+        
         class DigitalInOut::IMPL
         {
             public:
                 
+                IMPL( int n, PinDirection d, PinMode m, int v ): pin( n ), direction( d ), mode( m ), value( v )
+                {
+                    gpio_init_inout
+                    (
+                        &( this->gpio ),
+                        static_cast< PinName >( n ),
+                        this->GetPlatformPinDirection( d ),
+                        this->GetPlatformPinMode( m ),
+                        v
+                    );
+                }
+                
+                IMPL( const IMPL & o ): pin( o.pin ), direction( o.direction ), mode( o.mode ), value( o.value )
+                {
+                    gpio_init_inout
+                    (
+                        &( this->gpio ),
+                        static_cast< PinName >( o.pin ),
+                        this->GetPlatformPinDirection( o.direction ),
+                        this->GetPlatformPinMode( o.mode ),
+                        o.value
+                    );
+                }
+                
+                ::PinMode GetPlatformPinMode( PinMode m )
+                {
+                    switch( m )
+                    {
+                        case PinModePullNone:   return ::PullNone;
+                        case PinModePullDown:   return ::PullDown;
+                        case PinModePullUp:     return ::PullUp;
+                        case PinModeOpenDrain:  return ::OpenDrain;
+                        case PinModeRepeater:   return ::Repeater;
+                        default:                return ::PullDefault;
+                    }
+                }
+                
+                ::PinDirection GetPlatformPinDirection( PinDirection d )
+                {
+                    switch( d )
+                    {
+                        case PinDirectionInput:     return ::PIN_INPUT;
+                        case PinDirectionOutput:    return ::PIN_OUTPUT;
+                        default:                    return ::PIN_INPUT;
+                    }
+                }
+                
+                gpio_t       gpio;
+                int          pin;
+                PinDirection direction;
+                PinMode      mode;
+                int          value;
         };
         
-        DigitalInOut::DigitalInOut( int n ): impl( new IMPL )
-        {
-            ( void )n;
-        }
+        #pragma GCC diagnostic pop
         
-        DigitalInOut::DigitalInOut( const DigitalInOut & o ): impl( new IMPL )
-        {
-            ( void )o;
-        }
+        DigitalInOut::DigitalInOut( int n, PinDirection d, PinMode m, int v ): impl( new IMPL( n, d, m, v ) )
+        {}
+        
+        DigitalInOut::DigitalInOut( const DigitalInOut & o ): impl( new IMPL( *( o.impl ) ) )
+        {}
         
         DigitalInOut::DigitalInOut( DigitalInOut && o )
         {
@@ -60,6 +114,63 @@ namespace XS
             swap( *( this ), o );
             
             return *( this );
+        }
+        
+        DigitalInOut & DigitalInOut::operator =( int v )
+        {
+            this->Write( v );
+            
+            return *( this );
+        }
+        
+        DigitalInOut::operator int( void ) const
+        {
+            return this->Read();
+        }
+        
+        bool DigitalInOut::IsConnected( void ) const
+        {
+            return gpio_is_connected( &( this->impl->gpio ) );
+        }
+        
+        int DigitalInOut::Read( void ) const
+        {
+            return gpio_read( &( this->impl->gpio ) );
+        }
+        
+        void DigitalInOut::Write( int v )
+        {
+            gpio_write( &( this->impl->gpio ), v );
+        }
+        
+        PinMode DigitalInOut::GetPinMode( void ) const
+        {
+            return this->impl->mode;
+        }
+        
+        void DigitalInOut::SetPinMode( PinMode m )
+        {
+            gpio_mode( &( this->impl->gpio ), this->impl->GetPlatformPinMode( m ) );
+        }
+        
+        PinDirection DigitalInOut::GetPinDirection( void ) const
+        {
+            return this->impl->direction;
+        }
+        
+        void DigitalInOut::SetPinDirection( PinDirection d )
+        {
+            gpio_dir( &( this->impl->gpio ), this->impl->GetPlatformPinDirection( d ) );
+        }
+        
+        void DigitalInOut::Input( void )
+        {
+            this->SetPinDirection( PinDirectionInput );
+        }
+        
+        void DigitalInOut::Output( void )
+        {
+            this->SetPinDirection( PinDirectionOutput );
         }
         
         void swap( DigitalInOut & o1, DigitalInOut & o2 )

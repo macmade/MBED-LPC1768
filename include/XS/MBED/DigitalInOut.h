@@ -35,13 +35,26 @@ namespace XS
         {
             public:
                 
-                DigitalInOut( int n );
+                DigitalInOut( int n, PinDirection d, PinMode m = PinModePullDown, int v = 0 );
                 DigitalInOut( const DigitalInOut & o );
                 DigitalInOut( DigitalInOut && o );
                 
                 virtual ~DigitalInOut( void );
                 
                 DigitalInOut & operator =( DigitalInOut o );
+                DigitalInOut & operator =( int v );
+                
+                operator int( void ) const;
+                
+                bool         IsConnected( void ) const;
+                int          Read( void ) const;
+                void         Write( int v );
+                PinMode      GetPinMode( void ) const;
+                void         SetPinMode( PinMode m );
+                PinDirection GetPinDirection( void ) const;
+                void         SetPinDirection( PinDirection d );
+                void         Input( void );
+                void         Output( void );
                 
                 friend void swap( DigitalInOut & o1, DigitalInOut & o2 );
                 

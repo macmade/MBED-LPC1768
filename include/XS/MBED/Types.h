@@ -28,7 +28,14 @@
 namespace XS
 {
     namespace MBED
-    {           
+    {
+        typedef enum
+        {
+            PinDirectionInput   = 0x00,
+            PinDirectionOutput  = 0x01
+        }
+        PinDirection;
+        
         typedef enum
         {
             PinModePullNone    = 0x00,
