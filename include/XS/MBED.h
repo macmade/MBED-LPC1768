@@ -28,6 +28,8 @@
 #include <XS/MBED/C++11.h>
 #include <XS/MBED/Warnings.h>
 #include <XS/MBED/Types.h>
+#include <XS/MBED/AnalogIn.h>
+#include <XS/MBED/AnalogOut.h>
 #include <XS/MBED/DigitalIn.h>
 #include <XS/MBED/DigitalOut.h>
 #include <XS/MBED/DigitalInOut.h>

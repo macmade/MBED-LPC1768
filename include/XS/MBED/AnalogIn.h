@@ -22,23 +22,41 @@
  * THE SOFTWARE.
 *******************************************************************************/
 
-#ifndef XS_MBED_PLATFORM_H
-#define XS_MBED_PLATFORM_H
+#ifndef XS_MBED_ANALOG_IN_H
+#define XS_MBED_ANALOG_IN_H
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-#pragma GCC diagnostic ignored "-Wlong-long"
-#pragma GCC diagnostic ignored "-Wconversion"
-#pragma GCC diagnostic ignored "-Wsign-conversion"
-#pragma GCC diagnostic ignored "-Wpadded"
-#pragma GCC diagnostic ignored "-Wuseless-cast"
-#pragma GCC diagnostic ignored "-Wredundant-decls"
+#include <XS/MBED.h>
 
-#include "platform.h"
-#include "gpio_api.h"
-#include "analogin_api.h"
-#include "analogout_api.h"
+namespace XS
+{
+    namespace MBED
+    {
+        class AnalogIn
+        {
+            public:
+                
+                AnalogIn( int n );
+                AnalogIn( const AnalogIn & o );
+                AnalogIn( AnalogIn && o );
+                
+                virtual ~AnalogIn( void );
+                
+                AnalogIn & operator =( AnalogIn o );
+                
+                operator float( void );
+                operator uint16_t( void );
+                
+                float    Read( void );
+                uint16_t ReadUInt16( void );
+                
+                friend void swap( AnalogIn & o1, AnalogIn & o2 );
+                
+            private:
+                
+                class  IMPL;
+                IMPL * impl;
+        };
+    }
+}
 
-#pragma GCC diagnostic pop
-
-#endif /* XS_MBED_PLATFORM_H */
+#endif /* XS_MBED_ANALOG_IN_H */

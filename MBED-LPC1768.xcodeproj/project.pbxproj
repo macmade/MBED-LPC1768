@@ -8,6 +8,10 @@
 
 /* Begin PBXFileReference section */
 		052BDE131AF6596300CEC6E3 /* Types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Types.h; sourceTree = "<group>"; };
+		052BDE161AF7EE6B00CEC6E3 /* AnalogIn.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnalogIn.cpp; sourceTree = "<group>"; };
+		052BDE171AF7EE6B00CEC6E3 /* AnalogOut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnalogOut.cpp; sourceTree = "<group>"; };
+		052BDE181AF7EE7200CEC6E3 /* AnalogIn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogIn.h; sourceTree = "<group>"; };
+		052BDE191AF7EE7200CEC6E3 /* AnalogOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnalogOut.h; sourceTree = "<group>"; };
 		05C2C3AC1AF52083008CF0D5 /* DigitalOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DigitalOut.h; sourceTree = "<group>"; };
 		05C2C3B01AF52083008CF0D5 /* Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Platform.h; sourceTree = "<group>"; };
 		05C2C3B11AF52083008CF0D5 /* Warnings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Warnings.h; sourceTree = "<group>"; };
@@ -158,6 +162,8 @@
 				05C2C3B11AF52083008CF0D5 /* Warnings.h */,
 				052BDE131AF6596300CEC6E3 /* Types.h */,
 				05C2C4271AF53E18008CF0D5 /* Board.h */,
+				052BDE181AF7EE7200CEC6E3 /* AnalogIn.h */,
+				052BDE191AF7EE7200CEC6E3 /* AnalogOut.h */,
 				05C2C4281AF53E18008CF0D5 /* DigitalIn.h */,
 				05C2C4291AF53E18008CF0D5 /* DigitalInOut.h */,
 				05C2C3AC1AF52083008CF0D5 /* DigitalOut.h */,
@@ -325,6 +331,8 @@
 		05C2C41B1AF52083008CF0D5 /* MBED */ = {
 			isa = PBXGroup;
 			children = (
+				052BDE161AF7EE6B00CEC6E3 /* AnalogIn.cpp */,
+				052BDE171AF7EE6B00CEC6E3 /* AnalogOut.cpp */,
 				05C2C42B1AF53E1C008CF0D5 /* Board.cpp */,
 				05C2C42C1AF53E1C008CF0D5 /* DigitalIn.cpp */,
 				05C2C42D1AF53E1C008CF0D5 /* DigitalInOut.cpp */,
